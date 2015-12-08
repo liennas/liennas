@@ -25,8 +25,10 @@ make install prefix=$RPM_BUILD_ROOT
 /hello.exe
 
 %pre
+#! /bin/sh
 useradd hellower
 echo "1234" | passwd hellower --stdin
+%end
 
 %post
 userdel -r hellower
