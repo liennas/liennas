@@ -29,8 +29,3 @@ make install prefix=$RPM_BUILD_ROOT
 useradd hellower
 echo "1234" | passwd hellower --stdin
 %end
-
-%postun
-#!/bin/sh
-userdel -r hellower
-%end
