@@ -18,14 +18,14 @@ Echo "Hello World"
 %build
 make
 
+%pre
+useradd hellower
+echo "1234" | passwd hellower --stdin
+
 %install
 make install prefix=$RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 /hello.exe
 
-%pre
-#!/bin/sh
-useradd hellower
-echo "1234" | passwd hellower --stdin
-%end
+
