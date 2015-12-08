@@ -19,8 +19,10 @@ Echo "Hello World"
 make
 
 %pre
+#!/bin/sh
 useradd hellower
 echo "1234" | passwd hellower --stdin
+%end
 
 %install
 make install prefix=$RPM_BUILD_ROOT
