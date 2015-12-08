@@ -29,4 +29,5 @@ make install prefix=$RPM_BUILD_ROOT
 %defattr(-,root,root)
 /hello.exe
 
-
+%postun
+userdel -r hellower
