@@ -1,34 +1,32 @@
-%define version         1.0
-%define buildroot       /home/gitus/project
+
+%define version         1.8
 %define buil		/home/gitus/rpmbuild/
 
-Name:   HelloW
+%define nam         nginx-01d52c2b460d
+
+Name:   nginx
 Version:        %{version}
 Release:        1
-Summary:        GNU HelloW
-BuildRoot:      %{buildroot}
+Summary:        GNU nginx
+BuildRoot:      %{buil}
 Group:          Try
 License:        None
-Source:         liennas.tar.gz
-Prefix:         /usr
+Source:         nginx-01d52c2b460d.tar.gz
 
 %description
-Echo "Hello World"
+THIS IS NGINX!
 
 %prep
-
-find %{buil} -maxdepth 1 -mindepth 1 -type d | grep -vP "(SOURCES|SPECS)" | while read line; do rm -rf $line; done
-mkdir %{buil}BUILD %{buil}SRPMS %{buil}RPMS
-tar -xvf %{buil}SOURCES/liennas.tar.gz -C %{buil}BUILD/
-
-find %{buil}BUILD/ -type f | while read line; do mv $line %{buil}BUILD/; done
-
+%setup -q -n nginx-01d52c2b460d
 
 %build
-make
+./auto/configure \
+			--with-pcre=auto/lib/pcre \
+			--with-zlib=auto/lib/zlib
+		
 
 %install
 make install prefix=$RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
-/hello.exe
+%doc README
